@@ -1,6 +1,5 @@
 import javax.swing.JFrame;
 import javax.swing.JPanel;
-import java.awt.Color;
 import java.util.Scanner;
 
 public class TreeViewer extends JFrame
@@ -8,15 +7,13 @@ public class TreeViewer extends JFrame
     private final int HEIGHT = 1080;
     private final int WIDTH = 1900;
 
-    private int order = 1;
-
     private TreePanel drawer;
     private JPanel holder;
     private boolean looping = true;
 
     public TreeViewer()
     {
-        super("Fractal Tree");
+        super("Mandelbrot Set");
         this.setSize(WIDTH, HEIGHT);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
@@ -55,8 +52,6 @@ public class TreeViewer extends JFrame
         this.setUndecorated(true);
         this.setVisible(true);
 
-
-
         loop();
     }
 
@@ -65,12 +60,8 @@ public class TreeViewer extends JFrame
      */
     public void loop()
     {
-        int count = 1;
         while (looping == true)
         {
-            //drawer.draw_zoom(count, 0,0);
-            //drawer.draw_zoom(3, 1,0);
-            //drawer.other_calc(250, count, .3352, .4006);
             try
             {
                 Thread.sleep(10);
@@ -80,17 +71,11 @@ public class TreeViewer extends JFrame
                 e.printStackTrace();
             }
             repaint();
-            count++;
         }
-    }
-
-    public static void main(String[] args)
-    {
-        JFrame frame = new TreeViewer();
-        frame.setBackground(Color.WHITE);
-        frame.repaint();
-
     }
 
 
 }
+
+
+

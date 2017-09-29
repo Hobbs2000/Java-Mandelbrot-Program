@@ -64,8 +64,6 @@ public class TreePanel extends JPanel
         }
     }
 
-
-
     /**
      *
      * @param c_re
@@ -86,61 +84,6 @@ public class TreePanel extends JPanel
         return i;
     }
 
-    /**
-     *
-     */
-    public void clear_drawing()
-    {
-        for (int r = 0; r < WIDTH; r++)
-        {
-            for (int c = 0; c < HEIGHT; c++)
-            {
-                drawing.setRGB(r, c, Color.WHITE.getRGB());
-            }
-        }
-    }
-
-    /**
-     *
-     */
-    public void draw_zoom(double zoom, double x_shift, double y_shift) {
-        clear_drawing();
-
-
-        double max_re = (2/zoom) + x_shift;
-        double min_re = -(max_re - x_shift);
-        double max_im = (2/zoom) + y_shift;
-        double min_im = -(max_im - y_shift);
-        System.out.println("max_re: "+max_re+" max_im: "+max_im);
-
-        for (int i = 0; i<c_reals.size(); i++)
-        {
-
-            if (c_reals.get(i).doubleValue() > min_re && c_reals.get(i).doubleValue() < max_re && c_imgs.get(i).doubleValue() > min_im && c_imgs.get(i).doubleValue() < max_im)
-            {
-                //System.out.println("real:"+reals.get(i).doubleValue()+"  im:"+imgs.get(i).doubleValue());
-                double WIDTH_db = (double)WIDTH;
-                double HEIGHT_db = (double)HEIGHT;
-                double x = (((c_reals.get(i).doubleValue())-min_re)/(2*max_re))*WIDTH_db;//(c_reals.get(i).doubleValue()/(4/WIDTH_db))+(WIDTH_db/2); //Get the X pixel coordinate
-
-                double y = (((c_imgs.get(i).doubleValue())-min_im)/(2*max_im))*HEIGHT_db;//((c_imgs.get(i).doubleValue()/(4/WIDTH_db))+(HEIGHT_db/2)); //Get the Y pixel coordinate
-                //System.out.println("X:"+x+" Y:"+y);
-
-                int n = iterations.get(i).intValue();
-                //System.out.println("N:"+ns.get(i).intValue());
-
-                int R = (int)((n)%256);
-                int G = (int)((n)%256);
-                int B = (int)((n)%256);
-                Color newColor = new Color(R, G, B, 255);
-                drawing.setRGB((int)x, (int)y, newColor.getRGB());
-            }
-        }
-
-
-
-
-    }
 
     public void paintComponent(Graphics g)
     {
