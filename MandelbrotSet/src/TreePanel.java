@@ -15,6 +15,7 @@ public class TreePanel extends JPanel
 
 
     private Random numGen;
+
     public TreePanel()
     {
         //this.setBackground(Color.BLACK);
@@ -33,7 +34,7 @@ public class TreePanel extends JPanel
      * @param x_shift
      * @param y_shift
      */
-    public void other_calc(int maxIteration, double zoom, double x_shift, double y_shift)
+    public void standard_calc(int maxIteration, double zoom, double x_shift, double y_shift)
     {
         zoom = zoom*zoom;
         zoom -= 1;
@@ -63,42 +64,6 @@ public class TreePanel extends JPanel
         }
     }
 
-
-    /**
-     *
-     */
-    public void calc(int maxIteration)
-    {
-        /*
-        zoom = zoom*zoom;
-        zoom -= 1;
-        if (zoom != 0 && zoom > 0) {
-            zoom = 1 / zoom;
-            zoom = (4 - zoom);}
-        else if (zoom < 0)
-            zoom = 0;
-*/
-        double WIDTH_better = WIDTH*2;
-        double HEIGHT_better = HEIGHT*2;
-
-        for (int row = 0; row < HEIGHT_better; row++) {
-            for (int col = 0; col < WIDTH_better; col++) {
-                //double c_re = ((col - WIDTH/2.0)*(4-zoom)/WIDTH) + x_shift;
-                double c_re = ((col - WIDTH_better/2.0)*4/WIDTH_better);
-                c_reals.add(c_re);
-
-                //double c_im = ((row - HEIGHT/2.0)*(4-zoom)/WIDTH) + y_shift;
-                double c_im = ((row - HEIGHT_better/2.0)*4/WIDTH_better);
-                c_imgs.add(c_im);
-
-                int n = findMandelbrot(c_re, c_im, maxIteration);
-                iterations.add(n);
-            }
-        }
-
-        System.out.println("Total coords:"+ c_reals.size());
-
-    }
 
 
     /**

@@ -8,6 +8,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.AdjustmentListener;
 import java.awt.event.AdjustmentEvent;
 import java.awt.Color;
+import java.util.Scanner;
 
 public class TreeViewer extends JFrame
 {
@@ -18,14 +19,6 @@ public class TreeViewer extends JFrame
 
     private TreePanel drawer;
     private JPanel holder;
-    private JButton increase;
-    private JButton decrease;
-    private JScrollBar length;
-    private JScrollBar editAngle;
-    private JScrollBar shiftAngle;
-    private JTextField editLength;
-
-    private JButton stopper;
     private boolean looping = true;
 
     public TreeViewer()
@@ -34,13 +27,33 @@ public class TreeViewer extends JFrame
         this.setSize(WIDTH, HEIGHT);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-        holder = new JPanel();
+        holder = new JPanel(); //This JPanel holds the TreePanel JPanel cuz reasons
 
 
         drawer = new TreePanel();
-        //drawer.calc(200);
-        //drawer.draw_zoom(2, 1,0);
-        drawer.other_calc(250, 20, .3352, .4006);
+        Scanner in = new Scanner(System.in);
+
+        System.out.println("Use Default Values? (y/n): ");
+
+        if (in.next().toLowerCase().equals("n"))
+        {
+            System.out.println("Iterations(int): ");
+            int iterations = in.nextInt();
+            System.out.println("Zoom level(int): ");
+            int zoom = in.nextInt();
+            System.out.println("X Shift(dbl): ");
+            double x_shift = in.nextDouble();
+            System.out.println("Y Shift(dbl): ");
+            double y_shift = in.nextDouble();
+
+            drawer.standard_calc(iterations, zoom, x_shift, y_shift); //Perform the actual calculations for the mandelbrot set
+        }
+        else
+        {
+            drawer.standard_calc(250, 20, .3352, .4006); //Perform the actual calculations for the mandelbrot set
+        }
+
+
         holder.add(drawer);
 
         this.add(holder);
@@ -54,6 +67,9 @@ public class TreeViewer extends JFrame
         loop();
     }
 
+    /**
+     * Just makes sure the window stays open
+     */
     public void loop()
     {
         int count = 1;
@@ -83,40 +99,5 @@ public class TreeViewer extends JFrame
 
     }
 
-    public class ClickListener implements ActionListener
-    {
-        public void actionPerformed(ActionEvent event)
-        {
-            if (event.getSource() == increase)
-            {
-
-            }
-            else if (event.getSource() == decrease)
-            {
-
-            }
-            else if (event.getSource() == stopper)
-            {
-            }
-        }
-    }
-
-    public class ScrollListener implements AdjustmentListener
-    {
-        public void adjustmentValueChanged(AdjustmentEvent e)
-        {
-            if (e.getSource() == editAngle)
-            {
-            }
-            else if (e.getSource() == shiftAngle)
-            {
-
-            }
-            else
-            {
-
-            }
-        }
-    }
 
 }
