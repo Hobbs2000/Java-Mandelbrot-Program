@@ -1,12 +1,5 @@
 import javax.swing.JFrame;
 import javax.swing.JPanel;
-import javax.swing.JButton;
-import javax.swing.JScrollBar;
-import javax.swing.JTextField;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
-import java.awt.event.AdjustmentListener;
-import java.awt.event.AdjustmentEvent;
 import java.awt.Color;
 import java.util.Scanner;
 
@@ -50,7 +43,7 @@ public class TreeViewer extends JFrame
         }
         else
         {
-            drawer.standard_calc(250, 20, .3352, .4006); //Perform the actual calculations for the mandelbrot set
+            drawer.standard_calc(255, 20, .3356, .4006); //Perform the actual calculations for the mandelbrot set
         }
 
 

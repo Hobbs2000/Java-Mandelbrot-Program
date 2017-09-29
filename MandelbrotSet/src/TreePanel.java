@@ -53,7 +53,7 @@ public class TreePanel extends JPanel
                 int n = findMandelbrot(c_re, c_im, maxIteration);
                 iterations.add(n);
 
-                int R = (int)((Math.log(n))%256);
+                int R = (int)((n)%256);
                 int G = (int)((n)%256);
                 int B = (int)((n)%256);
                 Color newColor = new Color(R, G, B, 255);
