@@ -48,8 +48,8 @@ public class Main
             else
             {
                 System.out.println("Generating Mandelbrot Image...");
-                mImg = new MandelbrotImage(1920, 1080, BufferedImage.TYPE_INT_RGB);
-                mImg.generateImage(255, 20, .3356, .4006);
+                mImg = new MandelbrotImage(1280, 720, BufferedImage.TYPE_INT_RGB);
+                mImg.generateImage(255, 3200, .335598, .4008);
             }
 
             System.out.println("Saving Image...");
@@ -69,20 +69,30 @@ public class Main
         {
             System.out.println("How long would you like the GIF to be?(s): ");
             double time = mainScan.nextDouble();
+            System.out.println("What would you like the framerate to be?(fps): ");
+            int fps = mainScan.nextInt();
             System.out.println("Name of gif file?: ");
             String fileName = mainScan.next();
 
+
             AnimatedGifEncoder ge = new AnimatedGifEncoder();
             ge.start(fileName+".gif");
-            int fps = 15; //The framerate in frames per second
+            //int fps = 15; //The framerate in frames per second
+
             ge.setDelay(1000/fps); //1000 ms in a second
 
 
             for (int i = 1; i < ((time*1000)/((1000/fps))); i++)
             {
-                System.out.println(i+"/"+((int)(time*1000)/(1000/fps)));
-                MandelbrotImage mImg = new MandelbrotImage(1920, 1080, BufferedImage.TYPE_INT_RGB);
-                mImg.generateImage(255, i*(i*0.05), .3356, .4006);
+                System.out.print(i+"/"+((int)(time*1000)/(1000/fps)));
+                MandelbrotImage mImg = new MandelbrotImage(1280, 720, BufferedImage.TYPE_INT_RGB);
+
+                double zoom = (i*i)*0.05;
+
+                System.out.print(" - Current Zoom: "+zoom);
+                System.out.println();
+
+                mImg.generateImage(255, zoom, .335598, .4008);
                 ge.addFrame(mImg);
             }
             ge.finish();
