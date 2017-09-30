@@ -3,6 +3,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.io.File;
 import java.io.IOException;
+import java.sql.Time;
 import java.util.Scanner;
 import java.awt.image.BufferedImage;;
 
@@ -66,7 +67,27 @@ public class Main
         }
         else
         {
-            System.out.println("Generating GIF...");
+            System.out.println("How long would you like the GIF to be?(s): ");
+            double time = mainScan.nextDouble();
+            System.out.println("Name of gif file?: ");
+            String fileName = mainScan.next();
+
+            AnimatedGifEncoder ge = new AnimatedGifEncoder();
+            ge.start(fileName+".gif");
+            int fps = 15; //The framerate in frames per second
+            ge.setDelay(1000/fps); //1000 ms in a second
+
+
+            for (int i = 1; i < ((time*1000)/((1000/fps))); i++)
+            {
+                System.out.println(i+"/"+((int)(time*1000)/(1000/fps)));
+                MandelbrotImage mImg = new MandelbrotImage(1920, 1080, BufferedImage.TYPE_INT_RGB);
+                mImg.generateImage(255, i*(i*0.05), .3356, .4006);
+                ge.addFrame(mImg);
+            }
+            ge.finish();
+
+
         }
     }
 }

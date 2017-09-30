@@ -48,9 +48,9 @@ public class MandelbrotImage extends BufferedImage
                 int n = findMandelbrotNum(c_re, c_im, maxIteration);
                 iterations.add(n);
 
-                int R = (int)((n)%256);
-                int G = (int)((n)%256);
-                int B = (int)((n)%256);
+                int R = ((n)%256);
+                int G = ((n)%256);
+                int B = ((n)%256);
                 Color newColor = new Color(R, G, B, 255);
 
                 this.setRGB(col, row, newColor.getRGB());
