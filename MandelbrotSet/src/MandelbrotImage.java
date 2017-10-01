@@ -61,7 +61,7 @@ public class MandelbrotImage extends BufferedImage
 
 
     /**
-     *
+     * Calculates a mandelbrot number
      * @param c_re
      * @param c_im
      * @param max
